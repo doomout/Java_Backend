@@ -1,4 +1,4 @@
-package ch03;
+package kr.co.khg.ch03;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ch03;
+package kr.co.khg.ch03;
 
 public class for_ex {
     public static void main(String[] args) {

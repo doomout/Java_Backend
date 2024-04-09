@@ -15,4 +15,5 @@ netstat -ano | findstr :8080
 이미 사용 중이라면...  
 application.properties 에 server.port=20001(임의 번호) 로 설정
 
- 
+ api 테스트 프로그램 postman   
+ https://www.postman.com/downloads/?utm_source=postman-home

@@ -1,4 +1,4 @@
-package ch03;
+package kr.co.khg.ch03;
 
 import java.util.ArrayList;
 import java.util.Comparator;
