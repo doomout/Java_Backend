@@ -13,5 +13,6 @@ Dependencies : Spring Web
 netstat -ano | findstr :8080 
 
 이미 사용 중이라면...  
-applucation.properties 에 server.port=20001(임의 번호) 로 설정
+application.properties 에 server.port=20001(임의 번호) 로 설정
 
+ 
