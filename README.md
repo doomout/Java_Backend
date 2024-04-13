@@ -17,3 +17,6 @@ application.properties 에 server.port=20001(임의 번호) 로 설정
 
  api 테스트 프로그램 postman   
  https://www.postman.com/downloads/?utm_source=postman-home
+
+ JSON 검증 사이트  
+ https://jsonformatter.curiousconcept.com/  

@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+            function onReadyStateChange(event) {
+                if (ajaxRequest.readyState === XMLHttpRequest.DONE) {
+                  if (ajaxRequest.status === 200) {
+                    console.log(ajaxRequest.responseText);
+                  } else {
+                    console.error('request failed');
+                  }
+                }
+              }
+
+            const ajaxRequest = new XMLHttpRequest();
+
+            ajaxRequest.onreadystatechange = onReadyStateChange; //이벤트 핸들러 등록
+            ajaxRequest.open('GET', '/get-with-no-parameter'); //요청을 초기화 한다.
+            ajaxRequest.send(); //AJAX 요청 보내기
+        </script>
+    </body>
+</html>
