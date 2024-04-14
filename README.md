@@ -20,3 +20,6 @@ application.properties 에 server.port=20001(임의 번호) 로 설정
 
  JSON 검증 사이트  
  https://jsonformatter.curiousconcept.com/  
+
+ HTTP 상태 코드 한글 설명 사이트
+ https://developer.mozilla.org/ko/docs/Web/HTTP/Status
