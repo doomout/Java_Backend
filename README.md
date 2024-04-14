@@ -2,6 +2,14 @@
 IDE : vscode   
 JDK : openjdk version "17.0.7"  
 
+설치한 vscode 확장 프로그램
+Extension Pack for Java
+Getter and Setter Generator
+HTML CSS Support
+JavaScript (ES6) code snippets
+Spring Boot Extension Pack
+Language Support for Java(TM) by Red Hat
+
 스프링 부트 설정 https://start.spring.io/  
 Project : Maven   
 Language : java  
