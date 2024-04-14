@@ -1,4 +1,4 @@
-package kr.co.khg.product.management;
+package kr.co.product.management.domain;
 
 public class Product {
     private Long id;

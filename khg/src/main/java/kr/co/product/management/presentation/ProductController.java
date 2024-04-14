@@ -1,6 +1,8 @@
-package kr.co.khg.product.management;
+package kr.co.product.management.presentation;
 
 import org.springframework.web.bind.annotation.*;
+
+import kr.co.product.management.domain.Product;
 
 @RestController
 public class ProductController {
