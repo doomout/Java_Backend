@@ -9,20 +9,4 @@ public class Product {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public Long getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Integer getPrice() {
-        return this.price;
-    }
-
-    public Integer getAmount() {
-        return this.amount;
-    }
 }
