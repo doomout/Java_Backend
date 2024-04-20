@@ -37,10 +37,17 @@ public class ListProductRepository {
                 .toList(); //여러 결과가 나올 것이기에 리스트를 반환한다.
     }
 
-    //Product 를 통째로 바꿔버리는 부분
+    //Product 를 통째로 바꿔서 수정한다.
     public Product update(Product product) {
         Integer indexToModify = products.indexOf(product);
         products.set(indexToModify, product);
         return product;
     }
+
+    //삭제
+    public void delete(Long id) {
+        Product product = this.findById(id);
+        products.remove(product); //remove 는 equals 를 기준으로 동당한 요소를 찾아서 지워주는 기능을 한다.
+    }
+
 }

@@ -47,4 +47,10 @@ public class ProductController {
         productDto.setId(id); //클라이언트가 요청 바디로 id를 넣지 않을 수도 있기 때문에 사용
         return simpleProductService.update(productDto);
     }
+
+    //id를 받아서 삭제 한다.
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
+    public void deleteProduct(@PathVariable Long id) {
+        simpleProductService.delete(id);
+    }
 }
