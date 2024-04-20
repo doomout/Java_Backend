@@ -31,4 +31,10 @@ public class SimpleProductService {
         //4. DTO를 반환하는 코드
         return savedProductDto;
     }
+
+    public ProductDto findById(Long id) {
+        Product product = listProductRepository.findById(id);
+        ProductDto productDto = modelMapper.map(product, ProductDto.class);
+        return productDto;
+    }
 }

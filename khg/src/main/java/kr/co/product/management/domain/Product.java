@@ -9,4 +9,8 @@ public class Product {
     public void setId(Long id) {
         this.id = id;
     }
+    //받은 id와 인스턴스의 id를 비교하여 반환
+    public Boolean sameId(Long id) {
+        return this.id.equals(id);
+    }
 }

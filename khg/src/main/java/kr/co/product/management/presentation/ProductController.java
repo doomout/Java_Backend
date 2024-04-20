@@ -19,4 +19,9 @@ public class ProductController {
         //Product를 생성하고 리스트에 넣는 작업이 필요함
         return simpleProductService.add(productDto);
     }
+
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
+    public ProductDto findProductById(@PathVariable Long id) {
+        return simpleProductService.findById(id);
+    }
 }
