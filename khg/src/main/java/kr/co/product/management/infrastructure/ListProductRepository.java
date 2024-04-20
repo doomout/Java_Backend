@@ -25,4 +25,10 @@ public class ListProductRepository {
                         .findFirst() //첫 번째 Product 반환
                         .orElseThrow();  // 비어 있으면 예외 반환, 있으면 Product 값 반환
     }
+
+    //전체 상품 목록 조회 
+    public List<Product> findAll() {
+        return products;
+    }
+
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @Service //@Service를 추가 함으로 해당 클래스는 스프링 프레임워크에 의해 생성되고 관리 된다.
 public class SimpleProductService {
     private ListProductRepository listProductRepository;
@@ -37,4 +39,17 @@ public class SimpleProductService {
         ProductDto productDto = modelMapper.map(product, ProductDto.class);
         return productDto;
     }
+
+    //전체 상품 목록 조회 
+    public List<ProductDto> findAll() {
+        List<Product> products = listProductRepository.findAll();
+
+        //Product -> ProductDto 으로 변환
+        List<ProductDto> productDtos = products.stream()
+                .map(product -> modelMapper.map(product, ProductDto.class))
+                .toList();
+        return productDtos;
+    }
+
+    
 }
