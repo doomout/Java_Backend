@@ -36,4 +36,11 @@ public class ListProductRepository {
                 .filter(product -> product.containsName(name))
                 .toList(); //여러 결과가 나올 것이기에 리스트를 반환한다.
     }
+
+    //Product 를 통째로 바꿔버리는 부분
+    public Product update(Product product) {
+        Integer indexToModify = products.indexOf(product);
+        products.set(indexToModify, product);
+        return product;
+    }
 }

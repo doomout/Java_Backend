@@ -38,4 +38,13 @@ public class ProductController {
 
         return simpleProductService.findByNameContaining(name);
     }
+
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+    public ProductDto updateProduct(
+            @PathVariable Long id, //URI ​​템플릿에서 값을 추출
+            @RequestBody ProductDto productDto // HTTP 요청 본문을 메서드 매개변수에 바인딩하는 데 사용
+    ) {
+        productDto.setId(id); //클라이언트가 요청 바디로 id를 넣지 않을 수도 있기 때문에 사용
+        return simpleProductService.update(productDto);
+    }
 }
