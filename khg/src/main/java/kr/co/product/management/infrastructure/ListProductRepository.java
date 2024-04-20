@@ -31,4 +31,9 @@ public class ListProductRepository {
         return products;
     }
 
+    public List<Product> findByNameContaining(String name) {
+        return products.stream()
+                .filter(product -> product.containsName(name))
+                .toList(); //여러 결과가 나올 것이기에 리스트를 반환한다.
+    }
 }

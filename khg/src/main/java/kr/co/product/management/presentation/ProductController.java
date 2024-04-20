@@ -27,9 +27,15 @@ public class ProductController {
         return simpleProductService.findById(id);
     }
 
-    //전체 상품 목록 조회 
+    //전체 상품 목록 조회 or 이름으로 조회 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public List<ProductDto> findProducts() {
-        return simpleProductService.findAll();
+    public List<ProductDto> findProducts(
+        //@RequestParam는 기본 속성이 필수로 받는 것이기에 파라미터가 없어도 되는 (required = false)를 명시해야 한다.
+        @RequestParam(required = false) String name 
+        ) { 
+        if(null == name)
+            return simpleProductService.findAll();
+
+        return simpleProductService.findByNameContaining(name);
     }
 }

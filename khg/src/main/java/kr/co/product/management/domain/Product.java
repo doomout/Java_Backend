@@ -13,4 +13,8 @@ public class Product {
     public Boolean sameId(Long id) {
         return this.id.equals(id);
     }
+    //매개변수로 받은 문자열이 상품 이름을 가지는 경우 참을 반환한다.
+    public Boolean containsName(String name) {
+        return this.name.contains(name);
+    }
 }
