@@ -13,24 +13,29 @@ import java.util.List;
 public class SimpleProductService {
     private ListProductRepository listProductRepository;
     private ModelMapper modelMapper;
+    private ValidationService validationService;
     
     @Autowired
-    SimpleProductService(ListProductRepository listProductRepository, ModelMapper modelMapper ) {
+    SimpleProductService(ListProductRepository listProductRepository, ModelMapper modelMapper, ValidationService validationService ) {
         this.listProductRepository = listProductRepository;
         this.modelMapper = modelMapper;
+        this.validationService = validationService;
     }
 
     public ProductDto add(ProductDto productDto) {
         //1. ProductDto 를 Product 로 변환하는 코드
         Product product = modelMapper.map(productDto, Product.class);
+        
+        //2. 유효성 검사 코드
+        validationService.checkValid(product); 
 
-        //2. 레포지토리를 호출하는 코드
+        //3. 레포지토리를 호출하는 코드
         Product savedProduct = listProductRepository.add(product);
         
-        //3. Product 를 ProductDto로 변환하는 코드
+        //4. Product 를 ProductDto로 변환하는 코드
         ProductDto savedProductDto = modelMapper.map(savedProduct, ProductDto.class);
        
-        //4. DTO를 반환하는 코드
+        //5. DTO를 반환하는 코드
         return savedProductDto;
     }
 
