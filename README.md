@@ -31,3 +31,13 @@ application.properties 에 server.port=20001(임의 번호) 로 설정
 
  HTTP 상태 코드 한글 설명 사이트  
  https://developer.mozilla.org/ko/docs/Web/HTTP/Status
+
+ 유효성 검사 라이브러리  
+ https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation  
+
+ @NotNull : 오직 null만 허용하지 않는다. 빈 문자열이나 띄어쓰기만 있는 문자열은 허용된다.
+ @NotEmpty : null 와 "" 처럼 빈 문자열이 허용되지 않는다. 띄어쓰기가 있는 문자열은 허용된다.
+ @NotBlank : null, "", " " 전부 허용하지 않는다.
+
+ 깃허브에 있는 소스코드 검색 사이트  
+ https://grep.app/ 
