@@ -1,5 +1,6 @@
 package kr.co.product.management.infrastructure;
 
+import kr.co.product.management.domain.EntityNotFoundException;
 import kr.co.product.management.domain.Product;
 import org.springframework.stereotype.Repository;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -23,7 +24,7 @@ public class ListProductRepository {
         return products.stream()
                         .filter(product -> product.sameId(id))
                         .findFirst() //첫 번째 Product 반환
-                        .orElseThrow();  // 비어 있으면 예외 반환, 있으면 Product 값 반환
+                        .orElseThrow(() -> new EntityNotFoundException("Product를 찾지 못했습니다."));  // 에러 메시지 명시
     }
 
     //전체 상품 목록 조회 

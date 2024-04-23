@@ -1,5 +1,7 @@
 package kr.co.product.management.presentation;
 
+import kr.co.product.management.domain.EntityNotFoundException;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -13,6 +15,7 @@ import jakarta.validation.Path;
 
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -46,6 +49,17 @@ public class GlobalExceptionHandler {
 
         ErrorMessage errorMessage = new ErrorMessage(errors);
         return new ResponseEntity(errorMessage, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorMessage> handleEntityNotFoundExceptionException(
+            EntityNotFoundException ex
+    ) {
+        List<String> errors = new ArrayList<>();
+        errors.add(ex.getMessage());
+
+        ErrorMessage errorMessage = new ErrorMessage(errors);
+        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
     }
 
     private String extractField(Path path) {
