@@ -40,4 +40,13 @@ application.properties 에 server.port=20001(임의 번호) 로 설정
  @NotBlank : null, "", " " 전부 허용하지 않는다.  
 
  깃허브에 있는 소스코드 검색 사이트  
- https://grep.app/ 
+ https://grep.app/   
+
+ 도커 데스크탑  
+ https://www.docker.com/products/docker-desktop/  
+
+ 도커 설치 실패하는 경우 참조  
+ https://www.lainyzine.com/ko/article/a-complete-guide-to-how-to-install-docker-desktop-on-windows-10/
+
+ 도커 설치 후 mysql 설치법 : 도커 실행 후 -> 파웨 쉘에서 하단 명령어 입력  
+ docker run --name DB이름 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=비밀번호 -d mysql:8.0.29 --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
