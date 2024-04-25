@@ -50,3 +50,30 @@ application.properties 에 server.port=20001(임의 번호) 로 설정
 
  도커 설치 후 mysql 설치법 : 도커 실행 후 -> 파웨 쉘에서 하단 명령어 입력  
  docker run --name DB이름 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=비밀번호 -d mysql:8.0.29 --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+
+ DB 생성 과정  
+ mysql -u root -p 엔터, root 비밀번호 입력 //ROOT 로그인  
+ CREATE SCHEMA product_management; //스키마 생성  
+ USE product_management;  //생성한 스키마 사용  
+ //테이블 생성  
+ CREATE TABLE products (  
+    id BIGINT PRIMARY KET NOT NULL AUTO_INCREMENT,  
+    name VARCHAR(100) NOT NULL,  
+    price INT NOT NULL,  
+    amount INT NOT NULL  
+ );  
+
+```xml
+//pom.xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+
+//spring boot 2.7.8 이상일 때는 아래와 같이 설정해야 한다.
+<dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+</dependency>
+
+```
