@@ -77,3 +77,7 @@ application.properties 에 server.port=20001(임의 번호) 로 설정
 </dependency>
 
 ```
+도커에서 mysql 로그인 하기  
+1) mysql -u root -p 
+2) root비밀번호 입력
+3) use product_management;

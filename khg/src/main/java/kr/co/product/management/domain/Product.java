@@ -24,6 +24,17 @@ public class Product {
     public void setId(Long id) {
         this.id = id;
     }
+    public String getName() {
+        return name;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
     //받은 id와 인스턴스의 id를 비교하여 반환
     public Boolean sameId(Long id) {
         return this.id.equals(id);
