@@ -35,11 +35,23 @@ public class Product {
     public Integer getAmount() {
         return amount;
     }
-    //받은 id와 인스턴스의 id를 비교하여 반환
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
     public Boolean sameId(Long id) {
         return this.id.equals(id);
     }
-    //매개변수로 받은 문자열이 상품 이름을 가지는 경우 참을 반환한다.
+
     public Boolean containsName(String name) {
         return this.name.contains(name);
     }

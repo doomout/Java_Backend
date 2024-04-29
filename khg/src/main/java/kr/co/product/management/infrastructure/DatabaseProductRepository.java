@@ -4,7 +4,9 @@ import kr.co.product.management.domain.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -27,7 +29,11 @@ public class DatabaseProductRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder(); //id 채워주기
         SqlParameterSource namedParameter = new BeanPropertySqlParameterSource(product);
         
-        namedParameterJdbcTemplate.update("INSERT INTO products (name, price, amount) VALUES (:name, :price, :amount)", namedParameter, keyHolder);
+        namedParameterJdbcTemplate.update(
+            "INSERT INTO products (name, price, amount) VALUES (:name, :price, :amount)"
+            ,namedParameter
+            ,keyHolder
+        );
 
         Long generatedId = keyHolder.getKey().longValue();
         product.setId(generatedId);
@@ -36,7 +42,15 @@ public class DatabaseProductRepository {
     }
 
     public Product findById(Long id) {
-        return null;
+        SqlParameterSource namedParameter = new MapSqlParameterSource("id", id);
+
+        Product product = namedParameterJdbcTemplate.queryForObject(
+            "SELECT id, name, price, amount FROM products WHERE id=:id"
+            ,namedParameter
+            ,new BeanPropertyRowMapper<>(Product.class)
+        );
+
+        return product;
     }
 
     public List<Product> findAll() {
