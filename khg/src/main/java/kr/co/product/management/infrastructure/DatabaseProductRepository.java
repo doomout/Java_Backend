@@ -54,11 +54,24 @@ public class DatabaseProductRepository {
     }
 
     public List<Product> findAll() {
-        return Collections.EMPTY_LIST;
+        List<Product> products = namedParameterJdbcTemplate.query(
+                "SELECT * FROM products"
+                , new BeanPropertyRowMapper<>(Product.class)
+        );
+
+        return products;
     }
 
     public List<Product> findByNameContaining(String name) {
-        return Collections.EMPTY_LIST;
+        SqlParameterSource namedParameter = new MapSqlParameterSource("name", "%" + name + "%");
+
+        List<Product> products = namedParameterJdbcTemplate.query(
+                "SELECT * FROM products WHERE name LIKE :name"
+                ,namedParameter
+                ,new BeanPropertyRowMapper<>(Product.class)
+        );
+
+        return products;
     }
 
     public Product update(Product product) {
