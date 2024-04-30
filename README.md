@@ -9,6 +9,7 @@ HTML CSS Support
 JavaScript (ES6) code snippets  
 Spring Boot Extension Pack  
 Language Support for Java(TM) by Red Hat  
+Test Runner for Java
 
 스프링 부트 설정 https://start.spring.io/  
 Project : Maven   
