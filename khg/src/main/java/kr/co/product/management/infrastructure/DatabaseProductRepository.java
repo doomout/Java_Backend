@@ -1,8 +1,10 @@
 package kr.co.product.management.infrastructure;
 
 import kr.co.product.management.domain.Product;
+import kr.co.product.management.domain.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -12,14 +14,13 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import java.util.Collections;
 import java.util.List;
 
 @Repository
-public class DatabaseProductRepository {
+@Profile("prod")
+public class DatabaseProductRepository implements ProductRepository  {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     
-
     @Autowired
     public DatabaseProductRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;

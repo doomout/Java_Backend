@@ -2,14 +2,18 @@ package kr.co.product.management.infrastructure;
 
 import kr.co.product.management.domain.EntityNotFoundException;
 import kr.co.product.management.domain.Product;
+import kr.co.product.management.domain.ProductRepository;
+
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Repository //빈으로 등록
-public class ListProductRepository {
+@Repository
+@Profile("test")
+public class ListProductRepository implements ProductRepository {
     private List<Product> products = new CopyOnWriteArrayList<>();
     private AtomicLong sequence = new AtomicLong(1L);
 
