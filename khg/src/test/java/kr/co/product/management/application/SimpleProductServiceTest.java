@@ -3,6 +3,7 @@ package kr.co.product.management.application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.product.management.domain.EntityNotFoundException;
 import kr.co.product.management.presentation.ProductDto;
@@ -12,11 +13,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @SpringBootTest //통합 테스트를 위해 사용
-@ActiveProfiles("test") //사용할 Profile 지정
+@ActiveProfiles("prod") //사용할 Profile 지정
 public class SimpleProductServiceTest {
     @Autowired //테스트 코드에서는 필드에 바로 주입해도 무관하다.
     SimpleProductService simpleProductService;
 
+    @Transactional //DB 테스트시 실 데이터가 안들어가도록 사용
     @Test //해당 메서드가 테스트 코드라는 것을 의미
     @DisplayName("상품을 추가한 후 id로 조회하면 해당 상품이 조회되어야한다.") //테스트 코드의 이름을 지정할 수 있다.
     void productAddAndFindByIdTest() {
@@ -26,12 +28,7 @@ public class SimpleProductServiceTest {
         Long savedProductId = savedProductDto.getId();
 
         ProductDto foundProductDto = simpleProductService.findById(savedProductId);
-        /*
-        System.out.println(savedProductDto.getId() == foundProductDto.getId());
-        System.out.println(savedProductDto.getName() == foundProductDto.getName());
-        System.out.println(savedProductDto.getPrice() == foundProductDto.getPrice());
-        System.out.println(savedProductDto.getAmount() == foundProductDto.getAmount());
-        */
+
         assertTrue(savedProductDto.getId().equals(foundProductDto.getId()));
         assertTrue(savedProductDto.getName().equals(foundProductDto.getName()));
         assertTrue(savedProductDto.getPrice().equals(foundProductDto.getPrice()));
