@@ -13,7 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @SpringBootTest //통합 테스트를 위해 사용
-@ActiveProfiles("prod") //사용할 Profile 지정
+@ActiveProfiles("prod") //prod : DB 사용, test: list 사용
 public class SimpleProductServiceTest {
     @Autowired //테스트 코드에서는 필드에 바로 주입해도 무관하다.
     SimpleProductService simpleProductService;

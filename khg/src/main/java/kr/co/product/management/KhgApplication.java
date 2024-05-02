@@ -3,8 +3,8 @@ package kr.co.product.management;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.config.Configuration;
+//import org.modelmapper.ModelMapper;
+//import org.modelmapper.config.Configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
@@ -18,6 +18,7 @@ public class KhgApplication {
 		SpringApplication.run(KhgApplication.class, args);
 	}
 
+	/* 
 	@Bean
 	public ModelMapper modelMapper() {
 		ModelMapper modelMapper = new ModelMapper();
@@ -26,6 +27,7 @@ public class KhgApplication {
 				.setFieldMatchingEnabled(true);
 		return modelMapper;
 	}
+	*/
 
 	@Bean
 	@Profile("prod")
