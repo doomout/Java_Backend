@@ -1,5 +1,6 @@
 package kr.co.shortenurlservice.presentation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,15 +9,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import kr.co.shortenurlservice.application.SimpleShortenUrlService;
 
 @RestController
 public class ShortenUrlRestController {
+    private SimpleShortenUrlService simpleShortenUrlService;
+
+    @Autowired
+    ShortenUrlRestController(SimpleShortenUrlService simpleShortenUrlService) {
+        this.simpleShortenUrlService = simpleShortenUrlService;
+    }
+
     //단축 URL 생성
     @RequestMapping(value = "/shortenUrl", method = RequestMethod.POST)
     public ResponseEntity<ShortenUrlCreateResponseDto> createShortenUrl(
             @Valid @RequestBody ShortenUrlCreateRequestDto shortenUrlCreateRequestDto
     )  {
-        return  ResponseEntity.ok().body(null);
+        return ResponseEntity.ok().body(null);
     } 
 
     //단축 URL 리다이렉트
