@@ -25,13 +25,15 @@ public class ShortenUrlRestController {
     public ResponseEntity<ShortenUrlCreateResponseDto> createShortenUrl(
             @Valid @RequestBody ShortenUrlCreateRequestDto shortenUrlCreateRequestDto
     )  {
-        return ResponseEntity.ok().body(null);
+        ShortenUrlCreateResponseDto shortenUrlCreateResponseDto =
+                simpleShortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto);
+        return ResponseEntity.ok(shortenUrlCreateResponseDto);
     } 
 
     //단축 URL 리다이렉트
     @RequestMapping(value = "/{shortenUrlKey}", method = RequestMethod.GET)
     public ResponseEntity<?> redirectShortenUrl( 
-            @PathVariable String shortenUrlKe
+            @PathVariable String shortenUrlKey
     )  {
         return ResponseEntity.ok().body(null);
     }
@@ -41,6 +43,8 @@ public class ShortenUrlRestController {
     public ResponseEntity<ShortenUrlInformationDto> getShortenUrlInformation(
             @PathVariable String shortenUrlKey
     ) {
-        return ResponseEntity.ok().body(null);
+        ShortenUrlInformationDto shortenUrlInformationDto =
+                simpleShortenUrlService.getShortenUrlInformationByShortenUrlKey(shortenUrlKey);
+        return ResponseEntity.ok(shortenUrlInformationDto);
     }
 }
