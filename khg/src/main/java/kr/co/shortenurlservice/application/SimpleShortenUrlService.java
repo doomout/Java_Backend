@@ -39,6 +39,7 @@ public class SimpleShortenUrlService {
         return shortenUrlCreateResponseDto;
     }
 
+    // 단축 URL 키를 이용하여 원래의 URL을 가져오는 메서드
     public String getOriginalUrlByShortenUrlKey(String shortenUrlKey) {
         ShortenUrl shortenUrl = shortenUrlRepository.findShortenUrlByShortenUrlKey(shortenUrlKey);
 
@@ -53,6 +54,7 @@ public class SimpleShortenUrlService {
         return originalUrl;
     }
 
+    // 단축 URL 키를 이용하여 단축 URL의 정보를 가져오는 메서드
     public ShortenUrlInformationDto getShortenUrlInformationByShortenUrlKey(String shortenUrlKey) {
         ShortenUrl shortenUrl = shortenUrlRepository.findShortenUrlByShortenUrlKey(shortenUrlKey);
 
@@ -64,6 +66,7 @@ public class SimpleShortenUrlService {
         return shortenUrlInformationDto;
     }
 
+    // 단축 URL 키를 생성하는 메서드
     private String generateShortenUrlKey()  {
         final int MAX_RETRY_COUNT = 5;
         int count = 0;
