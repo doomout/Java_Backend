@@ -1,8 +1,5 @@
 package kr.co.shortenurlservice.presentation;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import jakarta.validation.Valid;
 import kr.co.shortenurlservice.application.SimpleShortenUrlService;
 
 @RestController
@@ -40,7 +37,7 @@ public class ShortenUrlRestController {
     //단축 URL 리다이렉트
     @RequestMapping(value = "/{shortenUrlKey}", method = RequestMethod.GET)
     public ResponseEntity<?> redirectShortenUrl( 
-            @PathVariable String shortenUrlKey
+        @PathVariable String shortenUrlKey 
     )  throws URISyntaxException {
         String originalUrl = simpleShortenUrlService.getOriginalUrlByShortenUrlKey(shortenUrlKey);
 
@@ -54,7 +51,7 @@ public class ShortenUrlRestController {
     //단축 URL 정보 조회
     @RequestMapping(value = "/shortenUrl/{shortenUrlKey}", method = RequestMethod.GET)
     public ResponseEntity<ShortenUrlInformationDto> getShortenUrlInformation(
-            @PathVariable String shortenUrlKey
+        @PathVariable String shortenUrlKey
     ) {
         ShortenUrlInformationDto shortenUrlInformationDto =
                 simpleShortenUrlService.getShortenUrlInformationByShortenUrlKey(shortenUrlKey);

@@ -20,30 +20,12 @@ public class SimpleShortenUrlService {
         this.shortenUrlRepository = shortenUrlRepository;
     }
 
-    public ShortenUrlCreateResponseDto generateShortenUrl(
-        ShortenUrlCreateRequestDto shortenUrlCreateRequestDto
-    ) {
+    public ShortenUrlCreateResponseDto generateShortenUrl(ShortenUrlCreateRequestDto shortenUrlCreateRequestDto) {
         //1.원래의 URL 가져오기
         String originalUrl = shortenUrlCreateRequestDto.getOriginalUrl();
 
-        
-        String shortenUrlKey = "";
-
-        final int MAX_RETRY_COUNT = 5;
-        int count = 0;
-
-       //단축 URL 중복 체크
-        while(count++ < MAX_RETRY_COUNT) {
-             //2. 단축 URL 생성 후 
-            shortenUrlKey = ShortenUrl.generateShortenUrlKey();
-            ShortenUrl shortenUrl = shortenUrlRepository.findShortenUrlByShortenUrlKey(shortenUrlKey);
-            if(null == shortenUrl) //단축 URL이 없으면 
-                break;
-        }
-
-        //2-1. 중복이 5번 이상 발생하면 예외 발생
-        if(count > MAX_RETRY_COUNT)
-            throw new LackOfShortenUrlKeyException();
+        //2. 단축 URL 생성 후 중복 체크
+        String shortenUrlKey = generateShortenUrlKey();
 
         //3. 원래의 URL과 단축 URL 키를 통해 ShortenUrl 도메인 객체 생성
         ShortenUrl shortenUrl = new ShortenUrl(originalUrl, shortenUrlKey);
@@ -80,5 +62,22 @@ public class SimpleShortenUrlService {
         ShortenUrlInformationDto shortenUrlInformationDto = new ShortenUrlInformationDto(shortenUrl);
 
         return shortenUrlInformationDto;
+    }
+
+    private String generateShortenUrlKey()  {
+        final int MAX_RETRY_COUNT = 5;
+        int count = 0;
+
+       //단축 URL 중복 체크
+        while(count++ < MAX_RETRY_COUNT) {
+            //단축 URL 생성 후 
+            String shortenUrlKey = ShortenUrl.generateShortenUrlKey();
+            //shortenUrlRepository 와 새로 생성한 shortenUrlKey를 비교한다.
+            ShortenUrl shortenUrl = shortenUrlRepository.findShortenUrlByShortenUrlKey(shortenUrlKey);
+            if(null == shortenUrl) //단축 URL이 없으면 
+                return shortenUrlKey;
+        }
+
+        throw new LackOfShortenUrlKeyException();
     }
 }
