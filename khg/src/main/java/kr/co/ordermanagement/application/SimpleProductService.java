@@ -18,7 +18,7 @@ public class SimpleProductService {
     }
 
     public List<ProductDto> findAll() {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findAll(); //전체 Product 조회
         List<ProductDto> productDtos = products.stream()
                 .map(product -> ProductDto.toDto(product))
                 .toList();
