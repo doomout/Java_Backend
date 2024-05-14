@@ -67,6 +67,16 @@ public class SimpleOrderService {
         return orderResponseDtos;
     }
 
+    //id로 주문 취소 기능
+    public OrderResponseDto cancelOrderById(Long orderId) {
+        Order order = orderRepository.findById(orderId);
+
+        order.cancel();
+
+        OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
+        return orderResponseDto;
+    }
+
     //상품 번호(id)에 해당하는 상품이 주문 수량 만큼 재고가 있는지 확인
     private List<Product> makeOrderedProducts(List<OrderProductRequestDto> orderProductRequestDtos) {
         return orderProductRequestDtos

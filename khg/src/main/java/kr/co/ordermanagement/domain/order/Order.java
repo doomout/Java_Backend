@@ -48,6 +48,13 @@ public class Order {
         this.state = state;
     }
 
+    public void cancel() {
+        if(!this.state.equals("CREATED"))
+            throw new RuntimeException("이미 취소 되었거나 취소할 수 없는 주문상태입니다.");
+        
+        this.state  = "CANCELED";
+    }
+
     private Integer calculateTotalPrice(List<Product> orderedProducts) {
         return orderedProducts
                 .stream()
