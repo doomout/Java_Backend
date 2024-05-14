@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.co.ordermanagement.application.SimpleOrderService;
 import kr.co.ordermanagement.presentation.dto.OrderProductRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
+import kr.co.ordermanagement.presentation.dto.ChangeStateRequestDto;
 
 @RestController
 public class OrderRestController {
@@ -38,5 +39,24 @@ public class OrderRestController {
         OrderResponseDto orderResponseDto = simpleOrderService.findById(orderId);
 
         return ResponseEntity.ok(orderResponseDto);
+    }
+
+    // 주문상태 강제 변경 API
+    @RequestMapping(value = "/orders/{orderId}", method = RequestMethod.PATCH)
+    public ResponseEntity<OrderResponseDto> changeOrderState(
+            @PathVariable Long orderId,
+            @RequestBody ChangeStateRequestDto changeStateRequestDto
+    ) {
+        OrderResponseDto orderResponseDto = simpleOrderService.changeState(orderId, changeStateRequestDto);
+
+        return ResponseEntity.ok(orderResponseDto);
+    }
+
+    // 주문상태로 조회 API
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    public ResponseEntity<List<OrderResponseDto>> getOrdersByState(@RequestParam String state) {
+        List<OrderResponseDto> orderResponseDtos = simpleOrderService.findByState(state);
+
+        return ResponseEntity.ok(orderResponseDtos);
     }
 }

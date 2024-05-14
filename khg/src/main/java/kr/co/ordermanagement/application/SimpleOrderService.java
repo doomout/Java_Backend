@@ -2,6 +2,7 @@ package kr.co.ordermanagement.application;
 
 import kr.co.ordermanagement.domain.order.OrderRepository;
 import kr.co.ordermanagement.domain.product.ProductRepository;
+import kr.co.ordermanagement.presentation.dto.ChangeStateRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderProductRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
 import kr.co.ordermanagement.domain.order.Order;
@@ -23,6 +24,7 @@ public class SimpleOrderService {
         this.orderRepository = orderRepository;
     }
 
+    //주문 생성 
     public OrderResponseDto createOrder(List<OrderProductRequestDto> orderProductRequestDtos) {
         List<Product> orderedProducts = makeOrderedProducts(orderProductRequestDtos);
         decreaseProductsAmount(orderedProducts);
@@ -33,12 +35,36 @@ public class SimpleOrderService {
         OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
         return orderResponseDto;
     }
+
     //주문 번호로 조회 기능
     public OrderResponseDto findById(Long orderId) {
         Order order = orderRepository.findById(orderId);
 
         OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
         return orderResponseDto;
+    }
+
+    //주문 상태 변경 기능
+    public OrderResponseDto changeState(Long orderId, ChangeStateRequestDto changeStateRequestDto) {
+        Order order = orderRepository.findById(orderId);
+        String state = changeStateRequestDto.getState();
+
+        order.changeStateForce(state);
+
+        OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
+        return orderResponseDto;
+    }
+
+    //주문 상태로 조회 기능
+    public List<OrderResponseDto> findByState(String state) {
+        List<Order> orders = orderRepository.findByState(state);
+
+        List<OrderResponseDto> orderResponseDtos = orders
+                .stream()
+                .map(order -> OrderResponseDto.toDto(order))
+                .toList();
+
+        return orderResponseDtos;
     }
 
     //상품 번호(id)에 해당하는 상품이 주문 수량 만큼 재고가 있는지 확인

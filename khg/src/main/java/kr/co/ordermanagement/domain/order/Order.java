@@ -40,6 +40,13 @@ public class Order {
         return this.id.equals(id);
     }
 
+    public Boolean sameState(String state) {
+        return this.state.equals(state);
+    }
+
+    public void changeStateForce(String state) {
+        this.state = state;
+    }
 
     private Integer calculateTotalPrice(List<Product> orderedProducts) {
         return orderedProducts
