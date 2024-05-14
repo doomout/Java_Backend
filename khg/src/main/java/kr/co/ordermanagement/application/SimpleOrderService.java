@@ -33,6 +33,13 @@ public class SimpleOrderService {
         OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
         return orderResponseDto;
     }
+    //주문 번호로 조회 기능
+    public OrderResponseDto findById(Long orderId) {
+        Order order = orderRepository.findById(orderId);
+
+        OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
+        return orderResponseDto;
+    }
 
     //상품 번호(id)에 해당하는 상품이 주문 수량 만큼 재고가 있는지 확인
     private List<Product> makeOrderedProducts(List<OrderProductRequestDto> orderProductRequestDtos) {

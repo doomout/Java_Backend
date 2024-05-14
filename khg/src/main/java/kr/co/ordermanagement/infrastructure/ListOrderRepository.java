@@ -22,4 +22,12 @@ public class ListOrderRepository implements OrderRepository {
         orders.add(order);
         return order;
     }
+
+    @Override
+    public Order findById(Long id) {
+        return orders.stream()
+                .filter(order -> order.sameId(id))
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("Order를 찾지 못했습니다."));
+    }
 }
