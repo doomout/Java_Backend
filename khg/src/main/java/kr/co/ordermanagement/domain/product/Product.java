@@ -2,6 +2,8 @@ package kr.co.ordermanagement.domain.product;
 
 import java.util.Objects;
 
+import kr.co.ordermanagement.domain.exception.NotEnoughAmountException;
+
 public class Product {
     private Long id;
     private String name;
@@ -38,7 +40,7 @@ public class Product {
     //재고 체크
     public void checkEnoughAmount(Integer orderedAmount) {
         if(this.amount < orderedAmount)
-            throw new RuntimeException(this.id + "번 상품의 수량이 부족합니다.");
+            throw new NotEnoughAmountException(this.id + "번 상품의 수량이 부족합니다.");
     }
 
     //상품을 가져와서 상품의 재고를 주문된 수량만큼 뺀다.
