@@ -35,7 +35,7 @@ public class OrderResponseDto {
         return state;
     }
 
-    public static OrderResponseDto toDto(Order order) {
+    public static OrderResponseDto toDto(Order order) { //주문 객체를 DTO로 변환
         List<OrderedProductDto> orderedProductDtos = order.getOrderedProducts()
                 .stream()
                 .map(orderedProduct -> OrderedProductDto.toDto(orderedProduct))
@@ -48,6 +48,6 @@ public class OrderResponseDto {
                 order.getState()
         );
 
-        return orderResponseDto;
+        return orderResponseDto; //주문에 대한 정보를 클라이언트에게 반환
     }
 }

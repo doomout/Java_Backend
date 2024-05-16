@@ -27,7 +27,7 @@ public class OrderRestController {
     }
 
     // 상품 주문 API
-    @RequestMapping(value = "/orders", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders", method = RequestMethod.POST) //POST 메서드로 주문을 생성
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody List<OrderProductRequestDto> orderProductRequestDtos) {
         OrderResponseDto orderResponseDto = simpleOrderService.createOrder(orderProductRequestDtos);
 
@@ -35,7 +35,7 @@ public class OrderRestController {
     }
 
     // 주문번호로 조회 API
-    @RequestMapping(value = "/orders/{orderId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/orders/{orderId}", method = RequestMethod.GET)  // GET 메서드로 주문을 주문 번호로 조회
     public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long orderId) {
         OrderResponseDto orderResponseDto = simpleOrderService.findById(orderId);
 
@@ -43,7 +43,7 @@ public class OrderRestController {
     }
 
     // 주문상태 강제 변경 API
-    @RequestMapping(value = "/orders/{orderId}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/orders/{orderId}", method = RequestMethod.PATCH)  //PATCH 메서드로 주문의 상태를 변경
     public ResponseEntity<OrderResponseDto> changeOrderState(
             @PathVariable Long orderId,
             @RequestBody ChangeStateRequestDto changeStateRequestDto
@@ -54,7 +54,7 @@ public class OrderRestController {
     }
 
     // 주문상태로 조회 API
-    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    @RequestMapping(value = "/orders", method = RequestMethod.GET) //GET 메서드로 주문을 상태로 조회
     public ResponseEntity<List<OrderResponseDto>> getOrdersByState(@RequestParam State state) {
         List<OrderResponseDto> orderResponseDtos = simpleOrderService.findByState(state);
 
@@ -62,7 +62,7 @@ public class OrderRestController {
     }
 
     // 주문 취소 API
-    @RequestMapping(value = "/orders/{orderId}/cancel", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/orders/{orderId}/cancel", method = RequestMethod.PATCH)  // PATCH 메서드로 주문을 취소
     public ResponseEntity<OrderResponseDto> cancelOrderById(@PathVariable Long orderId) {
         OrderResponseDto orderResponseDto = simpleOrderService.cancelOrderById(orderId);
 

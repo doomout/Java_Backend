@@ -99,6 +99,7 @@ public class SimpleOrderService {
                 }).toList();
     }
 
+    //차감된 상품 가격
     private void decreaseProductsAmount(List<OrderedProduct> orderedProducts) {
         orderedProducts
                 .stream()

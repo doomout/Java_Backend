@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ProductRestController {
+public class ProductRestController { //제품 목록을 조회하는 엔드포인트를 정의
    private SimpleProductService simpleProductService;
 
     @Autowired
-    ProductRestController(SimpleProductService simpleProductService) {
+    ProductRestController(SimpleProductService simpleProductService) { 
         this.simpleProductService = simpleProductService;
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @RequestMapping(value = "/products", method = RequestMethod.GET)  //GET 메서드로 모든 제품을 조회
     public List<ProductDto> findProducts() {
         return simpleProductService.findAll();
     } 
