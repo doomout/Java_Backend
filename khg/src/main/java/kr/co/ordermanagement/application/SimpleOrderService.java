@@ -1,6 +1,7 @@
 package kr.co.ordermanagement.application;
 
 import kr.co.ordermanagement.domain.order.OrderRepository;
+import kr.co.ordermanagement.domain.order.OrderedProduct;
 import kr.co.ordermanagement.domain.product.ProductRepository;
 import kr.co.ordermanagement.presentation.dto.ChangeStateRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderProductRequestDto;
@@ -27,7 +28,7 @@ public class SimpleOrderService {
 
     //주문 생성 
     public OrderResponseDto createOrder(List<OrderProductRequestDto> orderProductRequestDtos) {
-        List<Product> orderedProducts = makeOrderedProducts(orderProductRequestDtos);
+        List<OrderedProduct> orderedProducts = makeOrderedProducts(orderProductRequestDtos);
         decreaseProductsAmount(orderedProducts);
 
         Order order = new Order(orderedProducts);
@@ -79,7 +80,7 @@ public class SimpleOrderService {
     }
 
     //상품 번호(id)에 해당하는 상품이 주문 수량 만큼 재고가 있는지 확인
-    private List<Product> makeOrderedProducts(List<OrderProductRequestDto> orderProductRequestDtos) {
+    private List<OrderedProduct> makeOrderedProducts(List<OrderProductRequestDto> orderProductRequestDtos) {
         return orderProductRequestDtos
                 .stream()
                 .map(orderProductRequestDto -> {
@@ -89,7 +90,7 @@ public class SimpleOrderService {
                     Integer orderedAmount = orderProductRequestDto.getAmount();
                     product.checkEnoughAmount(orderedAmount); //주문 하려는 수량보다 상품 재고가 부족하면 예외를 던짐
 
-                    return new Product(
+                    return new OrderedProduct(
                             productId,
                             product.getName(),
                             product.getPrice(),
@@ -98,7 +99,7 @@ public class SimpleOrderService {
                 }).toList();
     }
 
-    private void decreaseProductsAmount(List<Product> orderedProducts) {
+    private void decreaseProductsAmount(List<OrderedProduct> orderedProducts) {
         orderedProducts
                 .stream()
                 .forEach(orderedProduct -> {
