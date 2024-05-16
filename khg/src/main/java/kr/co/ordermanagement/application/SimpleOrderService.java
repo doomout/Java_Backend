@@ -7,6 +7,7 @@ import kr.co.ordermanagement.presentation.dto.OrderProductRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
 import kr.co.ordermanagement.domain.order.Order;
 import kr.co.ordermanagement.domain.product.Product;
+import kr.co.ordermanagement.domain.order.State;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class SimpleOrderService {
     //주문 상태 변경 기능
     public OrderResponseDto changeState(Long orderId, ChangeStateRequestDto changeStateRequestDto) {
         Order order = orderRepository.findById(orderId);
-        String state = changeStateRequestDto.getState();
+        State state = changeStateRequestDto.getState();
 
         order.changeStateForce(state);
 
@@ -56,7 +57,7 @@ public class SimpleOrderService {
     }
 
     //주문 상태로 조회 기능
-    public List<OrderResponseDto> findByState(String state) {
+    public List<OrderResponseDto> findByState(State state) {
         List<Order> orders = orderRepository.findByState(state);
 
         List<OrderResponseDto> orderResponseDtos = orders

@@ -1,6 +1,7 @@
 package kr.co.ordermanagement.presentation.dto;
 
 import kr.co.ordermanagement.domain.order.Order;
+import kr.co.ordermanagement.domain.order.State;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ public class OrderResponseDto {
     private Long id; //주분  번호
     private List<ProductDto> orderedProducts; // 주문된 상품 목록
     private Integer totalPrice; //전체 주문 가격
-    private String state; //주문 상태 코드
+    private State state; //주문 상태 코드
 
-    public OrderResponseDto(Long id, List<ProductDto> orderedProducts, Integer totalPrice, String state) {
+    public OrderResponseDto(Long id, List<ProductDto> orderedProducts, Integer totalPrice, State state) {
         this.id = id;
         this.orderedProducts = orderedProducts;
         this.totalPrice = totalPrice;
@@ -30,7 +31,7 @@ public class OrderResponseDto {
         return totalPrice;
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
